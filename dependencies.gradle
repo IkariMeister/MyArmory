@@ -2,7 +2,7 @@ ext {
     versions = [
             arch_comp_lifecycle  : '2.2.0',
             arch_comp_persistence: '2.0.0',
-            android_plugin       : '7.0.3',
+            android_plugin       : '7.1.1',
             dagger               : '2.37',
             firebase             : '28.3.0',
             kotlin               : '1.5.0',
