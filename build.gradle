@@ -1,18 +1,73 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
+
 buildscript {
+    apply from: 'dependencies.gradle'
+
+    def date = new Date()
+    int years = date.format("yy").toInteger() - 21 // Years since 2022 (Epoch style)
+    int versionCode = "$years${date.format("MMddHHmm")}".toInteger()
+
+    ext {
+        app_version = "0.0.1"
+        app_version_code = versionCode
+
+        compile_sdk = 31
+        min_sdk = 24
+        target_sdk = 31
+    }
+
     repositories {
+        gradlePluginPortal()
         google()
         mavenCentral()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:7.0.4"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath build_plugins.android_gradle
+        classpath build_plugins.kotlin_gradle
+        classpath build_plugins.android_junit
+        classpath build_plugins.google_services
+        classpath build_plugins.firebase_crashlitycs
+        classpath build_plugins.firebase_performance
+        classpath build_plugins.detekt
+        classpath build_plugins.ktlint
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+def projectSource = file(projectDir)
+def configFile = files("$rootDir/config/detekt/detekt.yml")
+def baselineFile = file("$rootDir/config/detekt/baseline.xml")
+
+allprojects {
+    apply plugin: "io.gitlab.arturbosch.detekt"
+    apply plugin: "org.jlleitschuh.gradle.ktlint"
+
+    detekt {
+        description = "Detekt build for ${project.name}"
+        parallel = true
+        baseline = file(baselineFile)
+        config = files(configFile)
+
+        reports {
+            html {
+                enabled = true
+                destination = file("$rootDir/build/reports/detekt.html")
+            }
+        }
+    }
+
+    ktlint {
+        android = true
+        enableExperimentalRules = false
+    }
+}
+
+task detektProjectBaseline(type: DetektCreateBaselineTask) {
+    description = "Overrides current baseline file"
+    ignoreFailures.set(true)
+    parallel.set(true)
+    setSource(projectSource)
+    config.setFrom(configFile)
+    baseline.set(baselineFile)
+
+    include("**/*.kt")
 }
