@@ -38,6 +38,7 @@ dependencies {
     api libs.annotation
     api libs.design
     api libs.constraint
+    api libs.arch_comp_runtime
 
     // Kotlin standard lib
     api libs.kotlin_stdlib
@@ -47,4 +48,25 @@ dependencies {
     api libs.firebase_messaging
     api libs.firebase_crashlytics
     api libs.firebase_analytics
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    // Testing
+    testImplementation libs.mockito_kotlin
+    testImplementation libs.okhttp_mockwebserver
+    testImplementation libs.commons_io
+    testImplementation libs.junit_ext
+
+    // UI Testing
+    androidTestImplementation libs.mockito_kotlin
+    androidTestImplementation libs.test_core
+    androidTestImplementation libs.test_runner
+    androidTestImplementation libs.test_rules
+    androidTestImplementation libs.junit_ext
+    androidTestImplementation libs.idling_resource
+    androidTestImplementation libs.espresso
+    androidTestImplementation libs.espresso_intents
+    androidTestImplementation (libs.barista) {
+        exclude group: 'com.android.support'
+        exclude group: 'org.jetbrains.kotlin' // Only if you already use Kotlin in your project
+    }
 }

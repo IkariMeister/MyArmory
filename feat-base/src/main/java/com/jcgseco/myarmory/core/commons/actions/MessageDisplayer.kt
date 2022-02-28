@@ -1,4 +1,4 @@
-package com.jcgseco.myarmory.core.commons.messages
+package com.jcgseco.myarmory.core.commons.actions
 
 import android.app.Activity
 import android.view.Gravity

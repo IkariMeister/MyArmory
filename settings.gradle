@@ -9,3 +9,4 @@ dependencyResolutionManagement {
 rootProject.name = "MyArmory"
 include ':app'
 include ':feat-base'
+include ':ui-components'
