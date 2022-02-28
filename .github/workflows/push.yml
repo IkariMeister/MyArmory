@@ -22,7 +22,7 @@ jobs:
             ${{ runner.os }}-gradle-
 
       - name: Check code style ktlint and detekt
-        run: ./gradlew check ktlint detekt testDebugUnitTest
+        run: ./gradlew check ktlintCheck detekt testDebugUnitTest
 
       - uses: actions/upload-artifact@v2
         name: unit-test-reports
