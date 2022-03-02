@@ -12,8 +12,9 @@ import com.jcgseco.myarmory.core.commons.navigation.Screen
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-abstract class BaseViewModel(private val viewModelDependencies: ViewModelDependencies) : ViewModel(), LifecycleObserver {
-
+abstract class BaseViewModel(
+    private val viewModelDependencies: ViewModelDependencies
+) : ViewModel(), LifecycleObserver {
 
     protected val logger = viewModelDependencies.logger
     protected val eventsTracker = viewModelDependencies.eventsTracker
@@ -25,7 +26,7 @@ abstract class BaseViewModel(private val viewModelDependencies: ViewModelDepende
     private val executeAction = MutableStateFlow<Action>(Action.DoNothing)
     val action: StateFlow<Action>
         get() = executeAction
-    protected abstract val stateFlow : MutableStateFlow<ViewState>
+    protected abstract val stateFlow: MutableStateFlow<ViewState>
     val viewState: StateFlow<ViewState>
         get() = stateFlow
 

@@ -16,5 +16,4 @@ object DoNotNavigate : Navigator {
     override fun navigate(activity: Activity) {
         // Do Nothing
     }
-
 }

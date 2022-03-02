@@ -10,7 +10,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.ninetyninemarkets.app.ui.toolbar.ToolbarView
+            <com.jcgseco.myarmory.uicomponents.toolbar.ToolbarView
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="mainTitleText" format="reference" />
+    <attr name="secondaryTitleText" format="reference" />
+    <attr name="paragraphText" format="reference" />
+    <attr name="positiveParagraphText" format="reference" />
+    <attr name="negativeParagraphText" format="reference" />
+    <attr name="paragraphProminentText" format="reference" />
+    <attr name="positiveParagraphProminentText" format="reference" />
+    <attr name="negativeParagraphProminentText" format="reference" />
+    <attr name="smallParagraphText" format="reference" />
+    <attr name="positiveSmallParagraphText" format="reference" />
+    <attr name="negativeSmallParagraphText" format="reference" />
+    <attr name="extraSmallParagraphText" format="reference" />
+    <attr name="bigNumberText" format="reference" />
+    <attr name="mediumNumberText" format="reference" />
+    <attr name="sectionTitleText" format="reference" />
+    <attr name="subSectionTitleText" format="reference" />
+    <attr name="alternativeButtonText" format="reference" />
+    <attr name="expandedBarTitleText" format="reference" />
+    <attr name="collapsedBarTitleText" format="reference" />
+
+    <attr name="primaryButton" format="reference" />
+    <attr name="alternativeButton" format="reference" />
+    <attr name="alternativeSmallButton" format="reference" />
+    <attr name="secondaryButton" format="reference" />
+    <attr name="linkButton" format="reference" />
+    <attr name="widgetButton" format="reference" />
+
+    <attr name="radioButton" format="reference" />
+
+    <attr name="slider" format="reference" />
+
+</resources>

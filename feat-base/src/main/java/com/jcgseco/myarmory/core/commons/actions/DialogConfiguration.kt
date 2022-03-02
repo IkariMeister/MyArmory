@@ -13,5 +13,4 @@ sealed class DialogConfiguration(
     companion object {
         private const val EMPTY = -1
     }
-
 }

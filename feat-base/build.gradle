@@ -15,9 +15,23 @@ android {
     }
 
     buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        dev {}
+
+        integration {}
+
+        beta {}
+
+        release {}
+    }
+
+    flavorDimensions "version"
+
+    productFlavors {
+        prod {
+            dimension "version"
+        }
+        stg {
+            dimension "version"
         }
     }
     compileOptions {
@@ -32,6 +46,8 @@ android {
 }
 
 dependencies {
+
+    implementation project(':ui-components')
 
     // Android standard libs
     api libs.appcompat
@@ -48,7 +64,6 @@ dependencies {
     api libs.firebase_messaging
     api libs.firebase_crashlytics
     api libs.firebase_analytics
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     // Testing
     testImplementation libs.mockito_kotlin

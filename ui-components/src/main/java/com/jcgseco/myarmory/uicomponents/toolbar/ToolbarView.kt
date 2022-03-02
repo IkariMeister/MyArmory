@@ -1,4 +1,4 @@
-package com.ninetyninemarkets.app.ui.toolbar
+package com.jcgseco.myarmory.uicomponents.toolbar
 
 import android.content.Context
 import android.util.AttributeSet
@@ -7,9 +7,9 @@ import android.view.View
 import android.widget.FrameLayout
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import com.ninetyninemarkets.app.core.framework.android.extensions.setSafeOnClickListener
-import com.ninetyninemarkets.app.ui.R
-import com.ninetyninemarkets.app.ui.databinding.ViewToolbarBinding
+import com.jcgseco.myarmory.uicomponents.R
+import com.jcgseco.myarmory.uicomponents.databinding.ViewToolbarBinding
+import com.jcgseco.myarmory.uicomponents.extensions.setDelayedOnClickListener
 
 class ToolbarView @JvmOverloads constructor(
     context: Context,
@@ -60,11 +60,11 @@ class ToolbarView @JvmOverloads constructor(
     }
 
     fun setLeftOnClickButton(clickFunction: () -> Unit) {
-        binding.leftToolbarButton.setSafeOnClickListener { clickFunction() }
+        binding.leftToolbarButton.setDelayedOnClickListener { clickFunction() }
     }
 
     fun setRightOnClickButton(clickFunction: () -> Unit) {
-        binding.rightToolbarButton.setSafeOnClickListener { clickFunction() }
+        binding.rightToolbarButton.setDelayedOnClickListener { clickFunction() }
     }
 
     fun showRightButton() {

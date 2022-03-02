@@ -9,6 +9,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
@@ -78,7 +79,8 @@ abstract class ToolbarBaseFragment<T : ViewDataBinding, V : BaseViewModel>(
                 with(viewmodel) {
                     action.collect { action ->
                         when (action) {
-                            Action.DoNothing ->  { /*Do Nothing*/ }
+                            Action.DoNothing -> { /*Do Nothing*/
+                            }
                             is Action.ShowDialog -> dialogDisplayer.show(action.dialogConfiguration)
                             is Action.ShowMessage -> messageDisplayer.showMessage(requireActivity(), action.message)
                         }
@@ -87,7 +89,6 @@ abstract class ToolbarBaseFragment<T : ViewDataBinding, V : BaseViewModel>(
                 }
             }
         }
-
 
     abstract fun setUpObservers()
 
@@ -192,33 +193,17 @@ abstract class ToolbarBaseFragment<T : ViewDataBinding, V : BaseViewModel>(
         }
     }
 
-    private fun configureNetworkAdvice() {
-        parentBinding.errorView.setConf(AdviceViewConfiguration.NETWORK_ERROR)
-        parentBinding.errorView.setButtonOnClickListener { onRetryButtonClick() }
-    }
-
-    private fun configureUnexpectedError() {
-        parentBinding.errorView.setConf(AdviceViewConfiguration.UNEXPECTED_ERROR)
-    }
-
     open fun onRetryButtonClick() {}
 
     fun setState(state: ViewState) {
         parentBinding.loading.visibility = View.GONE
-        parentBinding.errorView.visibility = View.GONE
         parentBinding.fragmentContainer.visibility = View.GONE
 
         when (state) {
             is ViewState.Loading -> parentBinding.loading.visibility = View.VISIBLE
             is ViewState.Content -> parentBinding.fragmentContainer.visibility = View.VISIBLE
-            is ViewState.NetworkError -> {
-                configureNetworkAdvice()
-                parentBinding.errorView.visibility = View.VISIBLE
-            }
-            is ViewState.UnexpectedError -> {
-                configureUnexpectedError()
-                parentBinding.errorView.visibility = View.VISIBLE
-            }
+            is ViewState.NetworkError -> {}
+            is ViewState.UnexpectedError -> {}
         }
     }
 
@@ -231,6 +216,6 @@ abstract class ToolbarBaseFragment<T : ViewDataBinding, V : BaseViewModel>(
 sealed interface ViewState {
     interface Loading : ViewState
     interface Content : ViewState
-    interface NetworkError :ViewState
+    interface NetworkError : ViewState
     interface UnexpectedError : ViewState
 }

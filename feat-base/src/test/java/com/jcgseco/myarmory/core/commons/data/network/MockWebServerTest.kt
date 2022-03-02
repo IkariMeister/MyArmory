@@ -14,7 +14,7 @@ import java.io.File
 open class MockWebServerTest {
 
     companion object {
-        private val FILE_ENCODING = "UTF-8"
+        private const val FILE_ENCODING = "UTF-8"
     }
 
     private var server: MockWebServer = MockWebServer()
