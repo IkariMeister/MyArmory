@@ -1,0 +1,64 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    compileSdkVersion compile_sdk
+
+    defaultConfig {
+        targetSdkVersion target_sdk
+        minSdkVersion min_sdk
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        dev {}
+
+        integration {}
+
+        beta {}
+
+        release {}
+    }
+
+    flavorDimensions "version"
+
+    productFlavors {
+        prod {
+            dimension "version"
+        }
+        stg {
+            dimension "version"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
+    }
+}
+
+dependencies {
+
+    api libs.appcompat
+    api libs.annotation
+    api libs.design
+    api libs.constraint
+
+    api libs.material
+
+    // Kotlin standard lib
+    api libs.kotlin_stdlib
+
+    // Groupie
+    api libs.groupie
+    api libs.groupie_kotlin
+    api libs.groupie_viewbinding
+}

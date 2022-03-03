@@ -2,7 +2,6 @@
 <SmellBaseline>
   <ManuallySuppressedIssues/>
   <CurrentIssues>
-    <ID>MemberNameEqualsClassName:MessageDisplayer.kt$Toast$private var toast: Toast? = null</ID>
-    <ID>TooGenericExceptionCaught:FirebaseEventsTracker.kt$FirebaseEventsTracker$e: Exception</ID>
+    <ID>TooManyFunctions:ToolbarView.kt$ToolbarView : FrameLayout</ID>
   </CurrentIssues>
 </SmellBaseline>
