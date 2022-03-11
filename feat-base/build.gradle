@@ -61,6 +61,7 @@ dependencies {
     api libs.constraint
     api libs.activity_ktx
     api libs.fragment_ktx
+    api libs.arch_comp_lifecycle_ktx
 
     // Kotlin standard lib
     api libs.kotlin_stdlib

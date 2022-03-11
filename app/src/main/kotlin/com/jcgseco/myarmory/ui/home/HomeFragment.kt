@@ -14,4 +14,8 @@ class HomeFragment : ToolbarBaseFragment<FragmentHomeBinding,HomeViewModel>(R.la
     override fun onChildViewCreated(savedInstanceState: Bundle?) {
         TODO("Not yet implemented")
     }
+
+    override fun setUpObservers() {
+        TODO("Not yet implemented")
+    }
 }

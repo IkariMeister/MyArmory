@@ -2,7 +2,7 @@
 <SmellBaseline>
   <ManuallySuppressedIssues/>
   <CurrentIssues>
-    <ID>MemberNameEqualsClassName:MessageDisplayer.kt$Toast$private var toast: Toast? = null</ID>
-    <ID>TooGenericExceptionCaught:FirebaseEventsTracker.kt$FirebaseEventsTracker$e: Exception</ID>
+    <ID>LongParameterList:FragmentExtension.kt$( @AnimatorRes @AnimRes enter: Int, @AnimatorRes @AnimRes exit: Int, @AnimatorRes @AnimRes popEnter: Int, @AnimatorRes @AnimRes popExit: Int, func: FragmentTransaction.() -> FragmentTransaction )</ID>
+    <ID>TooManyFunctions:ToolbarView.kt$ToolbarView : FrameLayout</ID>
   </CurrentIssues>
 </SmellBaseline>

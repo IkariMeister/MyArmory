@@ -4,9 +4,14 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.jcgseco.myarmory.R
 import com.jcgseco.myarmory.databinding.ActivitySplashBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
@@ -19,6 +24,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         initBinding()
         initViewModel()
+        observeViewModelEvents()
     }
 
     private fun initBinding() {
@@ -27,6 +33,14 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun initViewModel() {
+        viewModel.init()
+    }
 
+    private fun observeViewModelEvents() = lifecycleScope.launch {
+        lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            viewModel.navigateTo.collectLatest {
+                it.navigate(this@SplashActivity)
+            }
+        }
     }
 }

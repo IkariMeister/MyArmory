@@ -1,3 +1,3 @@
 package com.jcgseco.myarmory.core.commons.navigation
 
-interface Screen
+sealed interface Screen
