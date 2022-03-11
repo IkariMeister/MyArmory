@@ -5,7 +5,8 @@ import androidx.annotation.AnimatorRes
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 
-inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> FragmentTransaction) = beginTransaction().func().commit()
+inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> FragmentTransaction) =
+    beginTransaction().func().commit()
 
 inline fun FragmentManager.inTransaction(
     @AnimatorRes @AnimRes

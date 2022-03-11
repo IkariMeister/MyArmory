@@ -5,11 +5,10 @@
     <item android:drawable="@color/background_section_color" />
 
     <item
+        android:height="88dp"
+        android:width="352dp"
+        android:drawable="@drawable/ic_splash"
+        android:gravity="center"
         android:left="@dimen/medium_margin"
-        android:right="@dimen/medium_margin">
-
-        <bitmap
-            android:gravity="center"
-            android:src="@drawable/ic_splash" />
-    </item>
+        android:right="@dimen/medium_margin" />
 </layer-list>

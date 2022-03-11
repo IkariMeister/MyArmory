@@ -11,5 +11,5 @@ class SeparatorItem : BindableItem<ItemSeparatorBinding>() {
 
     override fun initializeViewBinding(view: View): ItemSeparatorBinding = ItemSeparatorBinding.bind(view)
 
-    override fun bind(viewBinding: ItemSeparatorBinding, position: Int) {}
+    override fun bind(viewBinding: ItemSeparatorBinding, position: Int) { /*Do Nothing*/ }
 }

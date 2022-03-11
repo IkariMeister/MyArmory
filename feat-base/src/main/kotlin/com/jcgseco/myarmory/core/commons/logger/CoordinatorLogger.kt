@@ -4,13 +4,11 @@ import com.jcgseco.myarmory.core.commons.data.preferences.SessionPreferences
 import javax.inject.Inject
 
 class CoordinatorLogger @Inject constructor(
-    sessionPreferences: SessionPreferences
+    sessionPreferences: SessionPreferences,
+    private val loggers: List<Logger>,
 ) : Logger {
 
-    private val loggers = listOf(
-        AndroidLogger(),
-        CrashlyticsLogger(sessionPreferences)
-    )
+
 
     override fun debug(tag: String, message: String) {
         loggers.forEach { it.debug(tag, message) }

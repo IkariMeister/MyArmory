@@ -9,19 +9,28 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.RecyclerView
+import com.jcgseco.myarmory.core.commons.DoNothing
+import com.jcgseco.myarmory.core.commons.ShowDialog
+import com.jcgseco.myarmory.core.commons.ShowMessage
 import com.jcgseco.myarmory.core.commons.dialogs.DialogDisplayer
 import com.jcgseco.myarmory.core.commons.messages.MessageDisplayer
 import com.jcgseco.myarmory.core.commons.navigation.Navigator
+import com.jcgseco.myarmory.core.databinding.FragmentBaseBarBinding
+import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
 
 abstract class ToolbarBaseFragment<T : ViewDataBinding, V : BaseViewModel>(
     private val layoutResourceId: Int
 ) : Fragment() {
 
-    private lateinit var parentBinding: FragmentBaseToolbarBinding
+    private lateinit var parentBinding: FragmentBaseBarBinding
     lateinit var binding: T
     abstract val viewModel: V
 
@@ -41,7 +50,7 @@ abstract class ToolbarBaseFragment<T : ViewDataBinding, V : BaseViewModel>(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        parentBinding = FragmentBaseToolbarBinding.inflate(inflater, container, false)
+        parentBinding = FragmentBaseBarBinding.inflate(inflater, container, false)
         parentBinding.lifecycleOwner = this
         return parentBinding.root
     }
@@ -56,22 +65,25 @@ abstract class ToolbarBaseFragment<T : ViewDataBinding, V : BaseViewModel>(
 
     private fun initViewModel() {
         observeViewModelEvents(viewModel)
-//        viewModel.viewState.observe(viewLifecycleOwner) { setState(it) }
         setUpObservers()
     }
 
-    protected fun observeViewModelEvents(viewmodel: BaseViewModel) =
-//        with(viewmodel) {
-//            observe(action) {
-//                it.getContentIfNotHandled()?.run {
-//                    when (this) {
-//                        is Action.ShowMessage -> messageDisplayer.showMessage(requireActivity(), this.message)
-//                        is Action.ShowDialog -> dialogDisplayer.show(dialogConfiguration)
-//                    }
-//                }
-//            }
-//            observe(navigateTo) { it.getContentIfNotHandled()?.navigate(requireActivity()) }
-//        }
+    protected fun observeViewModelEvents(viewmodel: BaseViewModel) = lifecycleScope.launchWhenStarted {
+        viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            viewModel.navigateTo.collectLatest {
+                it.navigate(requireActivity())
+            }
+            viewmodel.action.collectLatest { action ->
+                when (action) {
+                    is ShowMessage -> messageDisplayer.showMessage(requireActivity(), action.message)
+                    is ShowDialog -> dialogDisplayer.show(action.dialogConfiguration)
+                    DoNothing -> { /* Do Nothing */
+                    }
+                }
+            }
+            viewModel.viewState.collectLatest { setState(it) }
+        }
+    }
 
     abstract fun setUpObservers()
 
@@ -119,14 +131,6 @@ abstract class ToolbarBaseFragment<T : ViewDataBinding, V : BaseViewModel>(
 
     fun hideToolbar() {
         parentBinding.toolbar.visibility = View.GONE
-    }
-
-    fun showBlockerLoading() {
-        parentBinding.blockerLoading.visibility = View.VISIBLE
-    }
-
-    fun hideBlockerLoading() {
-        parentBinding.blockerLoading.visibility = View.GONE
     }
 
     private fun showShadow() {
@@ -178,24 +182,19 @@ abstract class ToolbarBaseFragment<T : ViewDataBinding, V : BaseViewModel>(
 
     open fun onRetryButtonClick() {}
 
-    fun setState(state: ViewState) {
+    open fun setState(state: ViewState) {
         parentBinding.loading.visibility = View.GONE
-        parentBinding.errorView.visibility = View.GONE
         parentBinding.fragmentContainer.visibility = View.GONE
 
-//        when (state) {
-//            ViewState.LOADING -> parentBinding.loading.visibility = View.VISIBLE
-//            ViewState.CONTENT -> parentBinding.fragmentContainer.visibility = View.VISIBLE
-//            ViewState.NETWORK_ERROR -> {
-//                configureNetworkAdvice()
-//                parentBinding.errorView.visibility = View.VISIBLE
-//            }
-//            ViewState.UNEXPECTED_ERROR -> {
-//                configureUnexpectedError()
-//                parentBinding.errorView.visibility = View.VISIBLE
-//            }
-//        }
-//    }
+        when (state) {
+            is ViewState.Content -> parentBinding.loading.visibility = View.VISIBLE
+            is ViewState.Loading -> parentBinding.fragmentContainer.visibility = View.VISIBLE
+            is ViewState.NoContent -> TODO()
+            is ViewState.NoNetwork -> TODO()
+            is ViewState.UnexpectedError -> TODO()
+        }
+
+    }
 
     override fun onDestroy() {
         dialogDisplayer.onDestroy()

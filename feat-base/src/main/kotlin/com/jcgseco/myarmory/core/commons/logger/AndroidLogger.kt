@@ -2,7 +2,7 @@ package com.jcgseco.myarmory.core.commons.logger
 
 import android.util.Log
 
-class AndroidLogger : Logger {
+object AndroidLogger : Logger {
 
     override fun debug(tag: String, message: String) {
         Log.d(tag, message)

@@ -15,7 +15,7 @@ import com.jcgseco.myarmory.core.commons.navigation.Screen
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-abstract class BaseViewModel(private val viewModelDependencies: ViewModelDependencies) : ViewModel(), LifecycleObserver {
+abstract class BaseViewModel(viewModelDependencies: ViewModelDependencies) : ViewModel(), LifecycleObserver {
 
 
     protected val sessionPreferences = viewModelDependencies.sessionPreferences

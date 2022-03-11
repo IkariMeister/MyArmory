@@ -13,6 +13,10 @@ class HomeViewModel @Inject constructor(
 ) : BaseViewModel(viewModelDependencies) {
 
     protected override val viewStateFlow = MutableStateFlow<ViewState>(Loading)
+
+    fun init() {
+        // TBI
+    }
 }
 
 sealed class HomeViewState
