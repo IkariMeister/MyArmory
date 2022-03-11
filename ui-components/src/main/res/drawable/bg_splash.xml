@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:opacity="opaque">
+
+    <item android:drawable="@color/background_section_color" />
+
+    <item
+        android:left="@dimen/medium_margin"
+        android:right="@dimen/medium_margin">
+
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/ic_splash" />
+    </item>
+</layer-list>

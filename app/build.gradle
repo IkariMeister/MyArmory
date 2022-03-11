@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
     id 'com.google.firebase.crashlytics'
 }
 
@@ -10,58 +11,19 @@ android {
     compileSdkVersion compile_sdk
 
     defaultConfig {
-        applicationId "com.jcgseco.myarmory"
         targetSdkVersion target_sdk
         minSdkVersion min_sdk
         versionCode app_version_code
         versionName app_version
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        resValue 'string', 'app_name', 'My Armory'
     }
 
     buildTypes {
-        dev {
-            applicationIdSuffix '.dev'
-            versionNameSuffix '_DEV'
-            resValue 'string', 'app_name', 'My Armory Dev'
+        debug {
             buildConfigField 'boolean', 'ENABLE_CRASHLYTICS', 'false'
             buildConfigField 'boolean', 'ENABLE_ANALYTICS_TRACKER', 'false'
             manifestPlaceholders = [
                     appIcon     : "@mipmap/ic_launcher_dev",
                     appIconRound: "@mipmap/ic_launcher_dev_round"
-            ]
-        }
-
-        integration {
-            debuggable true
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            firebaseCrashlytics { mappingFileUploadEnabled true }
-            applicationIdSuffix '.int'
-            versionNameSuffix '_INT'
-            resValue 'string', 'app_name', 'My Armory Integration'
-            buildConfigField 'boolean', 'ENABLE_CRASHLYTICS', 'true'
-            buildConfigField 'boolean', 'ENABLE_ANALYTICS_TRACKER', 'false'
-            manifestPlaceholders = [
-                    appIcon     : "@mipmap/ic_launcher_staging",
-                    appIconRound: "@mipmap/ic_launcher_staging_round"
-            ]
-        }
-
-        beta {
-            debuggable true
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            firebaseCrashlytics { mappingFileUploadEnabled true }
-            applicationIdSuffix '.beta'
-            resValue 'string', 'app_name', 'My Armory Beta'
-            buildConfigField 'boolean', 'ENABLE_CRASHLYTICS', 'true'
-            buildConfigField 'boolean', 'ENABLE_ANALYTICS_TRACKER', 'false'
-            manifestPlaceholders = [
-                    appIcon     : "@mipmap/ic_launcher_beta",
-                    appIconRound: "@mipmap/ic_launcher_beta_round"
             ]
         }
 
@@ -84,8 +46,11 @@ android {
         prod {
             dimension "version"
         }
-        stg {
+        dev {
             dimension "version"
+            applicationIdSuffix '.dev'
+            versionNameSuffix '_DEV'
+            resValue 'string', 'app_name', 'My Armory Dev'
         }
     }
     compileOptions {
@@ -104,6 +69,9 @@ android {
 dependencies {
 
     implementation project(':feat-base')
+
+    api libs.hilt_android
+    kapt libs.hilt_compiler
 
     // Canary leak must only run on debug builds
     debugImplementation libs.canary_leak

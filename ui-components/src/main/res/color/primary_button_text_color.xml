@@ -1,0 +1,4 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/secondary_text_color" android:state_enabled="false" />
+    <item android:color="@color/background_section_color" />
+</selector>
