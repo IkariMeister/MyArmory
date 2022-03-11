@@ -45,4 +45,8 @@ class HomeFragment : ToolbarBaseFragment<FragmentHomeBinding, HomeViewModel>(R.l
             setHasFixedSize(false)
         }
     }
+
+    override fun setUpObservers() {
+        TODO("Not yet implemented")
+    }
 }
