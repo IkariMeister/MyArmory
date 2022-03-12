@@ -2,7 +2,11 @@
 <SmellBaseline>
   <ManuallySuppressedIssues/>
   <CurrentIssues>
+    <ID>LongParameterList:DialogConfiguration.kt$DialogConfiguration$( @StringRes open val title: Int, @StringRes open val message: Int, @StringRes open val positiveButtonLabel: Int, @StringRes open val negativeButtonLabel: Int, open val onClick: () -> Unit )</ID>
+    <ID>LongParameterList:FragmentExtension.kt$( @AnimatorRes @AnimRes enter: Int, @AnimatorRes @AnimRes exit: Int, @AnimatorRes @AnimRes popEnter: Int, @AnimatorRes @AnimRes popExit: Int, func: FragmentTransaction.() -> FragmentTransaction )</ID>
     <ID>MemberNameEqualsClassName:MessageDisplayer.kt$Toast$private var toast: Toast? = null</ID>
     <ID>TooGenericExceptionCaught:FirebaseEventsTracker.kt$FirebaseEventsTracker$e: Exception</ID>
+    <ID>TooManyFunctions:ToolbarBaseFragment.kt$ToolbarBaseFragment&lt;T : ViewDataBinding, V : BaseViewModel> : Fragment</ID>
+    <ID>TooManyFunctions:ToolbarView.kt$ToolbarView : FrameLayout</ID>
   </CurrentIssues>
 </SmellBaseline>

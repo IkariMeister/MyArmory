@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ThemeBase" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@color/background_color</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:colorPrimary">@color/main_color</item> <!-- TODO Check this duality -->
+        <item name="android:colorAccent">@color/main_color</item> <!-- TODO Check this duality -->
+        <item name="colorPrimaryDark">@color/main_color</item>
+        <item name="colorPrimary">@color/main_color</item> <!-- TODO Check this duality -->
+        <item name="colorAccent">@color/main_color</item> <!-- TODO Check this duality -->
+    </style>
+
+    <style name="AppThemeDefault" parent="ThemeBase">
+
+        <item name="mainTitleText">@style/mainTitleText_default</item>
+        <item name="secondaryTitleText">@style/secondaryTitleText_default</item>
+        <item name="paragraphText">@style/paragraphText_default</item>
+        <item name="positiveParagraphText">@style/positiveParagraphText_default</item>
+        <item name="negativeParagraphText">@style/negativeParagraphText_default</item>
+        <item name="paragraphProminentText">@style/paragraphProminentText_default</item>
+        <item name="positiveParagraphProminentText">@style/positiveParagraphProminentText_default</item>
+        <item name="negativeParagraphProminentText">@style/negativeParagraphProminentText_default</item>
+        <item name="smallParagraphText">@style/smallParagraphText_default</item>
+        <item name="positiveSmallParagraphText">@style/positiveSmallParagraphText_default</item>
+        <item name="negativeSmallParagraphText">@style/negativeSmallParagraphText_default</item>
+        <item name="extraSmallParagraphText">@style/extraSmallParagraphText_default</item>
+        <item name="bigNumberText">@style/bigNumberText_default</item>
+        <item name="mediumNumberText">@style/mediumNumberText_default</item>
+        <item name="sectionTitleText">@style/sectionTitleText_default</item>
+        <item name="subSectionTitleText">@style/subSectionTitleText_default</item>
+        <item name="alternativeButtonText">@style/alternativeButtonText_default</item>
+        <item name="expandedBarTitleText">@style/expandedBarTitleText_default</item>
+        <item name="collapsedBarTitleText">@style/collapsedBarTitleText_default</item>
+
+        <item name="primaryButton">@style/primaryButton_default</item>
+        <item name="alternativeButton">@style/alternativeButton_default</item>
+        <item name="alternativeSmallButton">@style/alternativeSmallButton_default</item>
+        <item name="secondaryButton">@style/secondaryButton_default</item>
+        <item name="linkButton">@style/linkButton_default</item>
+        <item name="widgetButton">@style/widgetButton_default</item>
+
+    </style>
+
+    <style name="SplashTheme" parent="AppThemeDefault">
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+        <item name="colorPrimaryDark">@color/background_section_color</item>
+    </style>
+
+</resources>
